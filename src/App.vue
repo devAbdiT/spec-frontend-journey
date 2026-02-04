@@ -1,22 +1,27 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<!-- <script setup>
+import HelloWorld from "./components/HelloWorld.vue";
+import TheWelcome from "./components/TheWelcome.vue";
+</script> -->
+
+<!-- Topic One -->
+<!-- <script setup>
+const name = "SPEC Developer";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <h1>Hello {{ name }}</h1>
+</template> -->
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+<!-- Topic TWo  -->
+<script setup>
+import { ref } from "vue";
+const name = ref("");
+</script>
 
-  <main>
-    <TheWelcome />
-  </main>
+<template>
+  <input v-model="name" placeholder="Type your name" />
+  <p>Hello {{ name }}</p>
 </template>
-
 <style scoped>
 header {
   line-height: 1.5;
