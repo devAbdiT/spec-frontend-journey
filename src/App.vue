@@ -21,6 +21,11 @@ const name = ref("");
 <template>
   <input v-model="name" placeholder="Type your name" />
   <p>Hello {{ name }}</p>
+  <ul>
+    <li v-for="lang in ['JS', 'Python', 'Go']" :key="lang">
+      {{ lang }}
+    </li>
+  </ul>
 </template>
 <style scoped>
 header {
