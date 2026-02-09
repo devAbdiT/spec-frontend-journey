@@ -60,6 +60,7 @@ header {
 
 <script setup>
 import { ref } from "vue";
+import UserCard from "./components/UserCard.vue";
 
 const name = ref("");
 </script>
@@ -67,6 +68,8 @@ const name = ref("");
 <template>
   <input v-model="name" placeholder="Type your name" />
   <p v-if="name">Hello {{ name }}!</p>
+
+  <UserCard :name="name" role="Software Engineer" />
 </template>
 
 <style scoped>
