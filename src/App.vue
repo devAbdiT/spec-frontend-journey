@@ -66,10 +66,12 @@ const name = ref("");
 </script>
 
 <template>
-  <input v-model="name" placeholder="Type your name" />
-  <p v-if="name">Hello {{ name }}!</p>
+  <!-- <input v-model="name" placeholder="Type your name" />
+  <p v-if="name">Hello {{ name }}!</p> -->
 
-  <UserCard :name="name" role="Software Engineer" />
+  <UserCard name="Abdi" role="Software Engineer" />
+  <UserCard name="Tadesse" role="Manager" />
+  <UserCard name="Begna" role="Director" />
 </template>
 
 <style scoped>

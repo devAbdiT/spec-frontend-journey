@@ -7,9 +7,9 @@
 
 <script>
 export default {
-  name: 'UserCard',
-  props: ['name', 'role']
-}
+  name: "UserCard",
+  props: ["name", "role"],
+};
 </script>
 
 <style scoped>
