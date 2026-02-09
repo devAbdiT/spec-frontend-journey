@@ -58,6 +58,7 @@ header {
 }
 </style> -->
 
+<!-- Task 3
 <script setup>
 import { ref } from "vue";
 import UserCard from "./components/UserCard.vue";
@@ -65,16 +66,16 @@ import UserCard from "./components/UserCard.vue";
 const name = ref("");
 </script>
 
-<template>
-  <!-- <input v-model="name" placeholder="Type your name" />
+<template> -->
+<!-- <input v-model="name" placeholder="Type your name" />
   <p v-if="name">Hello {{ name }}!</p> -->
 
-  <UserCard name="Abdi" role="Software Engineer" />
+<!-- <UserCard name="Abdi" role="Software Engineer" />
   <UserCard name="Tadesse" role="Manager" />
   <UserCard name="Begna" role="Director" />
-</template>
+</template> -->
 
-<style scoped>
+<!-- <style scoped>
 input {
   padding: 10px;
   font-size: 16px;
@@ -89,5 +90,49 @@ p {
   color: #42b883;
   font-weight: bold;
   margin-top: 10px;
+}
+</style> -->
+
+Task 4
+<script setup>
+import { ref } from "vue";
+
+const count = ref(0);
+
+const increase = () => {
+  count.value++;
+};
+
+const decrease = () => {
+  if (count.value > 0) {
+    count.value--;
+  }
+};
+
+const reset = () => {
+  count.value = 0;
+};
+</script>
+<template>
+  <div>
+    <h2>Counter: {{ count }}</h2>
+
+    <button @click="decrease" :disabled="count === 0">-</button>
+    <button @click="increase">+</button>
+
+    <button @click="reset" :disabled="count === 0">Reset</button>
+  </div>
+</template>
+
+<style scoped>
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>
