@@ -1,138 +1,50 @@
-<!-- <!-- <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
-</script> -->
-
-<!-- Topic One -->
-<!-- <script setup>
-const name = "SPEC Developer";
-</script>
-
 <template>
-  <h1>Hello {{ name }}</h1>
-</template> -->
+  <div style="padding: 20px">
+    <h3>Password Checker</h3>
 
-<!-- Topic TWo  -->
+    <input
+      type="password"
+      v-model="password"
+      placeholder="Type password"
+      style="padding: 5px"
+    />
 
-<!-- <script setup>
-import { ref } from "vue";
-const name = ref("");
-</script>
-
-<template>
-  <input v-model="name" placeholder="Type your name" />
-  <p>Hello {{ name }}</p>
-  <ul>
-    <li v-for="lang in ['JS', 'Python', 'Go']" :key="lang">
-      {{ lang }}
-    </li>
-  </ul>
-</template> -->
-
-<!-- <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style> -->
-
-<!-- Task 3
-<script setup>
-import { ref } from "vue";
-import UserCard from "./components/UserCard.vue";
-
-const name = ref("");
-</script>
-
-<template> -->
-<!-- <input v-model="name" placeholder="Type your name" />
-  <p v-if="name">Hello {{ name }}!</p> -->
-
-<!-- <UserCard name="Abdi" role="Software Engineer" />
-  <UserCard name="Tadesse" role="Manager" />
-  <UserCard name="Begna" role="Director" />
-</template> -->
-
-<!-- <style scoped>
-input {
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-p {
-  font-size: 18px;
-  color: #42b883;
-  font-weight: bold;
-  margin-top: 10px;
-}
-</style> -->
-
-Task 4
-<script setup>
-import { ref } from "vue";
-
-const count = ref(0);
-
-const increase = () => {
-  count.value++;
-};
-
-const decrease = () => {
-  if (count.value > 0) {
-    count.value--;
-  }
-};
-
-const reset = () => {
-  count.value = 0;
-};
-</script>
-<template>
-  <div>
-    <h2>Counter: {{ count }}</h2>
-
-    <button @click="decrease" :disabled="count === 0">-</button>
-    <button @click="increase">+</button>
-
-    <button @click="reset" :disabled="count === 0">Reset</button>
+    <p>
+      Strength:
+      <span :style="{ color: textColor }">
+        {{ message }}
+      </span>
+    </p>
   </div>
 </template>
 
-<style scoped>
-button {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
+<script setup>
+import { ref, watch } from "vue";
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-</style>
+const password = ref("");
+const message = ref("");
+const textColor = ref("black");
+
+watch(password, (newValue) => {
+  const length = newValue.length;
+
+  const hasNumber = /[0-9]/.test(newValue);
+
+\  const hasSymbol = /[^a-zA-Z0-9]/.test(newValue);
+
+  // Simple logic
+  if (length === 0) {
+    message.value = "Type password";
+    textColor.value = "gray";
+  } else if (length < 6) {
+    message.value = "Weak";
+    textColor.value = "red";
+  } else if (hasNumber && hasSymbol) {
+    message.value = "Strong";
+    textColor.value = "green";
+  } else {
+    message.value = "Medium";
+    textColor.value = "orange";
+  }
+});
+</script>
