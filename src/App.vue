@@ -1,50 +1,35 @@
 <template>
-  <div style="padding: 20px">
-    <h3>Password Checker</h3>
+  <div style="text-align: center; padding: 20px">
+    <h2>🚪 Door Status</h2>
 
-    <input
-      type="password"
-      v-model="password"
-      placeholder="Type password"
-      style="padding: 5px"
-    />
+    <!-- Door emoji -->
+    <div style="font-size: 100px">
+      {{ isOpen ? "🚪➡️" : "🚪" }}
+    </div>
+
+    <!-- Button -->
+    <button
+      @click="toggle"
+      :style="{
+        padding: '10px 20px',
+        background: isOpen ? '#4CAF50' : '#f44336',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+      }"
+    >
+      {{ isOpen ? "CLOSE DOOR" : "OPEN DOOR" }}
+    </button>
 
     <p>
-      Strength:
-      <span :style="{ color: textColor }">
-        {{ message }}
-      </span>
+      The door is <strong>{{ isOpen ? "OPEN" : "CLOSED" }}</strong>
     </p>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { useToggle } from "../composables/useToggle";
 
-const password = ref("");
-const message = ref("");
-const textColor = ref("black");
-
-watch(password, (newValue) => {
-  const length = newValue.length;
-
-  const hasNumber = /[0-9]/.test(newValue);
-
-\  const hasSymbol = /[^a-zA-Z0-9]/.test(newValue);
-
-  // Simple logic
-  if (length === 0) {
-    message.value = "Type password";
-    textColor.value = "gray";
-  } else if (length < 6) {
-    message.value = "Weak";
-    textColor.value = "red";
-  } else if (hasNumber && hasSymbol) {
-    message.value = "Strong";
-    textColor.value = "green";
-  } else {
-    message.value = "Medium";
-    textColor.value = "orange";
-  }
-});
+const { isOn: isOpen, toggle } = useToggle(false);
+// I renamed isOn to isOpen to make more sense for a door!
 </script>
